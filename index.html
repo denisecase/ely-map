@@ -17,28 +17,46 @@
 	<style>
 		html,
 		body {
+			box-sizing: border-box;
 			height: 100%;
+			min-height: 100%;
+			font: 1.2em / 1.5 Helvetica Neue, Helvetica, Arial, sans-serif;
+			font-weight: 300;
 			margin: 0;
+			padding: 0;
 			display: flex;
 			flex-direction: column;
-			align-items: center;		
+			align-items: center;
 		}
-		h1{
-			font-size:8vw;
+
+		.page-header,
+		.page-footer {
+			flex-grow: 0;
+			flex-shrink: 0;
+			padding: 20px;
+			justify-content: center;
+
 		}
-		.leaflet-container {
-			height: 400px;
-			width: 600px;
-			max-width: 100%;
-			max-height: 100%;
-			
+
+		.page-body {
+			flex-grow: 1;
 		}
 	</style>
 </head>
+
 <body>
 
-	<h1>Special Places in Ely, MN</h1>
-	<div id="map" style="width: 600px; height: 400px;"></div>
+	<header class="page-header">Special Places in Ely, MN</header>
+
+	<main class="page-body">
+		<div id="map" style="width: 600px; height: 400px;"></div>
+	</main>
+
+	<footer class="page-footer">
+		<a href="https://github.com/denisecase/ely-map"><img src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
+				alt="GitHub" width="20" height="20"> </a>
+	</footer>
+
 
 	<script>
 		const ely_latitude = 47.903236;
@@ -78,10 +96,10 @@
 		}).addTo(map);
 
 		var marker = L.marker([ggpa.latitude, ggpa.longitude]).addTo(map)
-			.bindPopup("♥ GGPa's home.♥<br><br>"+ggpa.address).openPopup();
+			.bindPopup("♥ GGPa's home.♥<br><br>" + ggpa.address).openPopup();
 
 		var marker = L.marker([clusiau.latitude, clusiau.longitude]).addTo(map)
-			.bindPopup("♥ Eleanor's home where she and Arlie<br>raised Marilyn and Shirley.♥<br><br>"+clusiau.address).openPopup();
+			.bindPopup("♥ Eleanor's home where she and Arlie<br>raised Marilyn and Shirley.♥<br><br>" + clusiau.address).openPopup();
 
 		function onMapClick(e) {
 			popup
@@ -89,9 +107,10 @@
 				.setContent('You clicked the map at ' + e.latlng.toString())
 				.openOn(map);
 		}
-		
+
 		map.on('click', onMapClick);
 
 	</script>
 </body>
+
 </html>
