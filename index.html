@@ -1,102 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<base target="_top">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
-	<title>♥ Ely Places</title>
-	
-	<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.1/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin=""/>
-  <script src="https://unpkg.com/leaflet@1.9.1/dist/leaflet.js" integrity="sha256-NDI0K41gVbWqfkkaHj15IzU7PtMoelkzyKp8TOaFQ3s=" crossorigin=""></script>
+
+	<title>Ely</title>
+
+	<link rel="shortcut icon" type="image/x-icon" href="images/favicon_io/favicon.ico" />
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.1/dist/leaflet.css"
+		integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
+	<script src="https://unpkg.com/leaflet@1.9.1/dist/leaflet.js"
+		integrity="sha256-NDI0K41gVbWqfkkaHj15IzU7PtMoelkzyKp8TOaFQ3s=" crossorigin=""></script>
 
 	<style>
-		html, body {
+		html,
+		body {
 			height: 100%;
 			margin: 0;
+			display: flex;
+			flex-direction: column;
+			align-items: center;		
 		}
 		.leaflet-container {
 			height: 400px;
 			width: 600px;
 			max-width: 100%;
 			max-height: 100%;
+			
 		}
 	</style>
-	
 </head>
 <body>
 
+	<h1>Special Places in Ely, MN</h1>
+	<div id="map" style="width: 600px; height: 400px;"></div>
 
-<h1>Special Places in Ely, MN</h1>
-<div id="map" style="width: 600px; height: 400px;"></div>
+	<script>
+		const ely_latitude = 47.903236;
+		const ely_longitude = -91.867088;
+		const ely_city = 'Ely';
+		const ely_state = 'MN';
+		const zoom_initial = 13;
+		const zoom_max = 19;
 
-  <script>
-  const ely_latitude = 47.903236;
-  const ely_longitude = -91.867088;
-  const ely_city = 'Ely';
-  const ely_state = 'MN';
-  const zoom_initial = 13;
-  const zoom_max = 19;
-    
-  const location = {
-  id: 1,
-  name: 'Ely Clusiau',
-  address: '105 E. White St',
-  city: 'Ely', 
-  state: 'MN',
-  zipcode: '55731',
-  country: 'USA',
-  latitude:
-  longitude:
-  }
-  
-  /**
- * https://dev.to/joelbonetr/structs-in-javascript-1p9l
- * @constructor Generates a constructor for a given data structure
- * @param {string} keys separated by a comma + whitespace. struct('id, name, age')
- * @returns {constructor} Constructor for the new struct
- */
-function makeStruct(keys) {
-  if (!keys) return null;
-  const k = keys.split(', ');
-  const count = k.length;
+		/**
+	 * https://dev.to/joelbonetr/structs-in-javascript-1p9l
+	 * @constructor Generates a constructor for a given data structure
+	 * @param {string} keys separated by a comma + whitespace. struct('id, name, age')
+	 * @returns {constructor} Constructor for the new struct
+	 */
+		function makeStruct(keys) {
+			if (!keys) return null;
+			const k = keys.split(', ');
+			const count = k.length;
 
-  /** @constructor */
-  function constructor() {
-    for (let i = 0; i < count; i++) this[k[i]] = arguments[i];
-  }
-  return constructor;
-}
-    
-const loc = new makeStruct("id, name, address, city, state, zipcode, country, latitude, longitude");
-const ggpa = new loc(1, 'GGPa', '708 E. Boundary St', 'Ely', 'MN', '55731', 'USA',47.896723213329864, -91.85621273054721);
-const clusiau = new loc(2, 'Ely Clusiau', '105 E. White St', 'Ely', 'MN', '55731', 'USA',47.89992555481349, -91.8652694);
-  
- 
-	const map = L.map('map').setView([ely_latitude, ely_longitude], initial_zoom);
+			/** @constructor */
+			function constructor() {
+				for (let i = 0; i < count; i++) this[k[i]] = arguments[i];
+			}
+			return constructor;
+		}
 
-	const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-		maxZoom: zoom_max,
-		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-	}).addTo(map);
+		const loc = new makeStruct("id, name, address, city, state, zipcode, country, latitude, longitude");
+		const ggpa = new loc(1, 'GGPa', '708 E. Boundary St', 'Ely', 'MN', '55731', 'USA', 47.896723213329864, -91.85621273054721);
+		const clusiau = new loc(2, 'Ely Clusiau', '105 E. White St', 'Ely', 'MN', '55731', 'USA', 47.89992555481349, -91.8652694);
 
-	var marker = L.marker([ggpa.latitude, ggpa.longitude]).addTo(map)
-		.bindPopup("<b>Welcome!</b><br />This is Grampa Bruce's Home.'").openPopup();
+		const map = L.map('map').setView([ely_latitude, ely_longitude], zoom_initial);
 
-	var marker = L.marker([clusiau.latitude, clusiau.longitude]).addTo(map)
-		.bindPopup("<b>Welcome!</b><br />This is Eleanor Clusiau's Home where she and Arlie raised Marilyn Johnson.'").openPopup();
+		const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+			maxZoom: zoom_max,
+			attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+		}).addTo(map);
 
-	function onMapClick(e) {
-		popup
-			.setLatLng(e.latlng)
-			.setContent('You clicked the map at ' + e.latlng.toString())
-			.openOn(map);
-	}
+		var marker = L.marker([ggpa.latitude, ggpa.longitude]).addTo(map)
+			.bindPopup("♥ GGPa's home.♥<br><br>"+ggpa.address).openPopup();
 
-	map.on('click', onMapClick);
+		var marker = L.marker([clusiau.latitude, clusiau.longitude]).addTo(map)
+			.bindPopup("♥ Eleanor's home where she and Arlie<br>raised Marilyn and Shirley.♥<br><br>"+clusiau.address).openPopup();
 
-</script>
+		function onMapClick(e) {
+			popup
+				.setLatLng(e.latlng)
+				.setContent('You clicked the map at ' + e.latlng.toString())
+				.openOn(map);
+		}
+		
+		map.on('click', onMapClick);
 
+	</script>
 </body>
 </html>
