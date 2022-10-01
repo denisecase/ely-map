@@ -87,6 +87,7 @@
 		const loc = new makeStruct("id, name, address, city, state, zipcode, country, latitude, longitude");
 		const ggpa = new loc(1, 'GGPa', '708 E. Boundary St', 'Ely', 'MN', '55731', 'USA', 47.896723213329864, -91.85621273054721);
 		const clusiau = new loc(2, 'Ely Clusiau', '105 E. White St', 'Ely', 'MN', '55731', 'USA', 47.89992555481349, -91.8652694);
+		const oldlibrary = new loc(3, 'Old Ely Library', '30 S 1St Ave E', 'Ely', 'MN', '55731', 'USA',47.90183459557647, -91.86511870171158);
 
 		const map = L.map('map').setView([ely_latitude, ely_longitude], zoom_initial);
 
@@ -97,7 +98,8 @@
 
 		const gmapLayer = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
 			maxZoom: zoom_max,
-			subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+			subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
+			attribution: '&copy; <a href="https://mapsplatform.google.com/">Google Maps</a>'
 		}).addTo(map);
 
 		var marker = L.marker([ggpa.latitude, ggpa.longitude]).addTo(map)
@@ -105,6 +107,9 @@
 
 		var marker = L.marker([clusiau.latitude, clusiau.longitude]).addTo(map)
 			.bindPopup("♥ Eleanor's home where she and Arlie<br>raised Marilyn and Shirley.♥<br><br>" + clusiau.address).openPopup();
+
+		var marker = L.marker([oldlibrary.latitude, oldlibrary.longitude]).addTo(map)
+			.bindPopup("♥ Old Ely library.♥<br><br>♥ <a href='images/old_ely_library_meeting.png'>Photo</a> ♥<br><br>" + oldlibrary.address).openPopup();
 
 		function onMapClick(e) {
 			popup
