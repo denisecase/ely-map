@@ -88,6 +88,9 @@
 		const ggpa = new loc(1, 'GGPa', '708 E. Boundary St', 'Ely', 'MN', '55731', 'USA', 47.896723213329864, -91.85621273054721);
 		const clusiau = new loc(2, 'Ely Clusiau', '105 E. White St', 'Ely', 'MN', '55731', 'USA', 47.89992555481349, -91.8652694);
 		const oldlibrary = new loc(3, 'Old Ely Library', '30 S 1St Ave E', 'Ely', 'MN', '55731', 'USA',47.90183459557647, -91.86511870171158);
+		const ruby = new loc(3, "Ruby's old house", '233 E Harvey St', 'Ely', 'MN', '55731', 'USA',47.901629019335815, -91.86327746758185);
+		const honey = new loc(3, "Honey's old house" , '237 E Harvey St', 'Ely', 'MN', '55731', 'USA',47.90165419367751, -91.86312189946675);
+		const connie = new loc(3, "Connie's apartment" , 'Camp St', 'Ely', 'MN', '55731', 'USA',);
 
 		const map = L.map('map').setView([ely_latitude, ely_longitude], zoom_initial);
 
@@ -107,10 +110,16 @@
 
 		var marker = L.marker([clusiau.latitude, clusiau.longitude]).addTo(map)
 			.bindPopup("♥ Eleanor's home where she and Arlie<br>raised Marilyn and Shirley.♥<br><br>" + clusiau.address).openPopup();
+		
+		var marker = L.marker([ruby.latitude, ruby.longitude]).addTo(map)
+			.bindPopup("♥ Ruby Marie Hall Nikkola's old home.♥<br><br>" + ruby.address).openPopup();
+		
+		var marker = L.marker([honey.latitude, honey.longitude]).addTo(map)
+			.bindPopup("♥ Honey and Sinky's old home.♥<br><br>" + honey.address).openPopup();
 
 		var marker = L.marker([oldlibrary.latitude, oldlibrary.longitude]).addTo(map)
 			.bindPopup("♥ Old Ely library.♥<br><br>♥ <a href='images/old_ely_library_meeting.png'>Photo</a> ♥<br><br>" + oldlibrary.address).openPopup();
-
+		
 		function onMapClick(e) {
 			popup
 				.setLatLng(e.latlng)
