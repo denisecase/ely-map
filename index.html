@@ -71,7 +71,7 @@
 		const ely_longitude = -91.85924841274921;
 		const ely_city = 'Ely';
 		const ely_state = 'MN';
-		const zoom_initial = 15;
+		const zoom_initial = 8;
 		const zoom_max = 21;
 
 		/**
@@ -101,6 +101,9 @@
 		const connie = new loc(3, "Connie's apartment", '965 E Camp St', 'Ely', 'MN', '55731', 'USA', 47.90451287295153, -91.85244409325345);
 		const gmaKapsch = new loc(3, "Grandma Kapsch's old house", '36 8th Ave E', 'Ely', 'MN', '55731', 'USA', 47.90147629138675, -91.85459477992059);
 		const johnsonEly1 = new loc(3, "Johnson family home in Ely", '338 Pattison', 'Ely', 'MN', '55731', 'USA', 47.89847371712945, -91.86151920205099);
+		const hovlandCamp = new loc(3, "Grandpa Johnson Logging Camp", 'Voyageur Highway', 'Grand Marais', 'MN', '55604', 'USA', 47.836594136359274, -89.97295933465557);
+		const virginiaZoo = new loc(3, "Virginia MN Zoo", 'Olcott Park 9th Street North', 'Virginia', 'MN', '55792', 'USA', 47.52965810378027, -92.55040394241101);
+
 		// add more places below ...
 
 
@@ -140,6 +143,12 @@
 
 		const m7 = L.marker([johnsonEly1.latitude, johnsonEly1.longitude]).addTo(map)
 			.bindPopup("♥ Johnson family home in Ely. ♥<br><br> <a href='images/1930s-connie-kids/index.html'>Photos</a> ♥<br><br>" + johnsonEly1.address).openPopup();
+
+			const m8 = L.marker([hovlandCamp.latitude, hovlandCamp.longitude]).addTo(map)
+			.bindPopup("♥ Grampa's Camp near Havland. ♥<br><br> <a href='images/1930s-mn-hovland-logging/index.html'>Photos</a> ♥<br><br>" + hovlandCamp.address).openPopup();
+
+			const m9 = L.marker([virginiaZoo.latitude, virginiaZoo.longitude]).addTo(map)
+			.bindPopup("♥ Johnson family at Virginia MN Zoo. ♥<br><br> <a href='images/1930s-mn-virginia-zoo/index.html'>Photos</a> ♥<br><br>" + virginiaZoo.address).openPopup();
 
 		// --- add more markers below
 
