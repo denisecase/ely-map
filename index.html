@@ -67,8 +67,8 @@
 
 
 	<script>
-		const ely_latitude = 47.90118678480414;
-		const ely_longitude = -91.85924841274921;
+		const initial_latitude = 47.89841608394903;
+		const initial_longitude = -91.56561231856419;
 		const ely_city = 'Ely';
 		const ely_state = 'MN';
 		const zoom_initial = 8;
@@ -110,7 +110,7 @@
 		// add more places above.....
 		const oldlibrary = new loc(3, 'Ely Community Center', '30 S 1St Ave E', 'Ely', 'MN', '55731', 'USA', 47.90167629091219, -91.86525819078197);
 
-		const map = L.map('map').setView([ely_latitude, ely_longitude], zoom_initial);
+		const map = L.map('map').setView([initial_latitude, initial_longitude], zoom_initial);
 
 		// const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 		// 	maxZoom: zoom_max,
