@@ -111,6 +111,7 @@
 		
 		const oldlibrary = new loc(3, 'Ely Community Center', '30 S 1St Ave E', 'Ely', 'MN', '55731', 'USA', 47.90167629091219, -91.86525819078197);
 		const elywinHist = new loc(3, "Ely-Winton Historical Society", '1900 E Camp St', 'Ely', 'MN', '55731', 'USA', 47.90528808824474, -91.83692542883566);
+		const elyhighclass = new loc(3, "Ely Memorial High Class Photos", '600 E Harvey St', 'Ely', 'MN', '55731', 'USA', 47.90056916420261, -91.85799280358634);
 
 		const map = L.map('map').setView([initial_latitude, initial_longitude], zoom_initial);
 
@@ -158,13 +159,16 @@
 
 		// -- add more markers above
 
-		const m998 = L.marker([oldlibrary.latitude, oldlibrary.longitude]).addTo(map)
+		const m991 = L.marker([oldlibrary.latitude, oldlibrary.longitude]).addTo(map)
 			.bindPopup("♥ Community Center<br><br>and old Ely library. ♥<br><br>♥ <a href='images/old_ely_library_meeting.png'>Photo</a> ♥<br><br>" + oldlibrary.address).openPopup();
 
-		const m999 = L.marker([elywinHist.latitude, elywinHist.longitude]).addTo(map)
+		const m992 = L.marker([elywinHist.latitude, elywinHist.longitude]).addTo(map)
 			.bindPopup("♥ Ely-Winton<br><br>Historical Society. ♥<br><br>♥ <a href='https://www.elyecho.com/articles/2014/09/30/just-where-grampa-kapsch%E2%80%99s-gold'>Just where is Grampa Kapschs gold</a> ♥<br><br>" + elywinHist.address).openPopup();
 
-		function onMapClick(e) {
+		const m993 = L.marker([elyhighclass.latitude, elyhighclass.longitude]).addTo(map)
+			.bindPopup("♥ Ely Memorial High School. ♥<br><br>♥ <a href='images/1950s-mn-ely-high/index.html'>Class photos from 1950s-60</a> ♥<br><br>" + elywinHist.address).openPopup();
+
+			function onMapClick(e) {
 			popup
 				.setLatLng(e.latlng)
 				.setContent('You clicked the map at ' + e.latlng.toString())
